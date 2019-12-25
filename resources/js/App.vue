@@ -1,7 +1,7 @@
 <template>
     <div>
-        <MessageList></MessageList>
         <MessageForm></MessageForm>
+        <MessageList></MessageList>
     </div>
 </template>
 

@@ -7,7 +7,7 @@ export default {
             commit('setMessageTextVal', messageTextVal)
         },
 
-        messageSubmit: ({commit, state}) => {
+        messageSubmit: ({state}) => {
 
             axios
                 .post('/api/store', {
@@ -15,26 +15,21 @@ export default {
                     message: state.messageTextVal,
                 })
                 .then(response => {
-                    state.loading = true;
                 });
         },
-
-
-
 
     },
     mutations: {
         setMessageTitleVal: (state, messageTitleVal) => state.messageTitleVal = messageTitleVal,
         setMessageTextVal: (state, messageTextVal) => state.messageTextVal = messageTextVal,
     },
+
     state: {
         messageTitleVal: '',
         messageTextVal: '',
-        loading: false,
     },
-    getters: {
-        loading(state) {
-            return state.loading;
-        }
-    }
+
+    getters: {},
+
 }
+

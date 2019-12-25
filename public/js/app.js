@@ -1917,6 +1917,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     messageSubmit: function messageSubmit() {
       this.$store.dispatch('messageSubmit');
+      this.$store.dispatch('getMessage');
     }
   }
 });
@@ -1953,11 +1954,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     getMessages: function getMessages() {
-      console.log('1');
       return this.$store.getters.getMessages;
-    },
-    loading: function loading() {
-      return this.$store.getters.loading;
+    }
+  },
+  methods: {
+    getDate: function getDate(data) {
+      var messageDay = new Date(data).getDate() == new Date().getDate() ? 'Сегодня ' : new Date(data).getDate();
+      var messageMonth = getMonth();
+      var messageHours = new Date(data).getHours();
+      var messageMinutes = new Date(data).getMinutes() < 9 ? '0' + new Date(data).getMinutes() : new Date(data).getMinutes();
+
+      function getMonth() {
+        var allMonth = {
+          0: 'Января',
+          1: 'Февраля',
+          2: 'Марта',
+          3: 'Апреля',
+          4: 'Мая',
+          5: 'Июня',
+          6: 'Июля',
+          7: 'Августа',
+          8: 'Сентября',
+          9: 'Октября',
+          10: 'Ноября',
+          11: 'Декабря'
+        };
+        return allMonth[new Date(data).getMonth()];
+      }
+
+      var fullMessageDate = messageDay == 'Сегодня ' ? messageDay + ' в ' + messageHours + ':' + messageMinutes : messageDay + ' ' + messageMonth + ' в ' + messageHours + ':' + messageMinutes;
+      return fullMessageDate;
     }
   },
   mounted: function mounted() {
@@ -21079,7 +21105,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("MessageList"), _vm._v(" "), _c("MessageForm")], 1)
+  return _c("div", [_c("MessageForm"), _vm._v(" "), _c("MessageList")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -21189,19 +21215,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "messageList" }, [
-    _c("h3", [_vm._v("Messages")]),
-    _vm._v(" "),
     _c(
       "ul",
       _vm._l(_vm.getMessages, function(message) {
         return _c("li", { key: message.id }, [
-          _vm._v(_vm._s(message.title) + " - " + _vm._s(message.created_at))
+          _c("p", [
+            _vm._v(
+              _vm._s(message.title) +
+                " - " +
+                _vm._s(_vm.getDate(message.created_at))
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(message.message))])
         ])
       }),
       0
-    ),
-    _vm._v(" "),
-    _vm.loading ? _c("div", [_c("p", [_vm._v("111")])]) : _vm._e()
+    )
   ])
 }
 var staticRenderFns = []
@@ -37694,14 +37724,11 @@ __webpack_require__.r(__webpack_exports__);
       commit('setMessageTextVal', messageTextVal);
     },
     messageSubmit: function messageSubmit(_ref3) {
-      var commit = _ref3.commit,
-          state = _ref3.state;
+      var state = _ref3.state;
       axios.post('/api/store', {
         title: state.messageTitleVal,
         message: state.messageTextVal
-      }).then(function (response) {
-        state.loading = true;
-      });
+      }).then(function (response) {});
     }
   },
   mutations: {
@@ -37714,14 +37741,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   state: {
     messageTitleVal: '',
-    messageTextVal: '',
-    loading: false
+    messageTextVal: ''
   },
-  getters: {
-    loading: function loading(state) {
-      return state.loading;
-    }
-  }
+  getters: {}
 });
 
 /***/ }),
@@ -37753,7 +37775,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   getters: {
     getMessages: function getMessages(state) {
-      return state.messages;
+      return state.messages.reverse();
     }
   }
 });

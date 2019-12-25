@@ -1,14 +1,14 @@
 <template>
     <div class="messageList">
-        <h3>Messages</h3>
         <ul>
-            <li :key="message.id" v-for="message in getMessages">{{ message.title }} - {{ message.created_at }}</li>
+
+            <li :key="message.id" v-for="message in getMessages">
+                <p>{{ message.title }} - {{ getDate(message.created_at) }}</p>
+                <p>{{ message.message }}</p>
+
+
+            </li>
         </ul>
-
-        <div v-if="loading">
-            <p>111</p>
-        </div>
-
     </div>
 
 </template>
@@ -17,11 +17,41 @@
     export default {
         computed: {
             getMessages() {
-                console.log('1');
                 return this.$store.getters.getMessages;
             },
-            loading() {
-                return this.$store.getters.loading;
+        },
+
+        methods: {
+            getDate(data) {
+                let messageDay = new Date(data).getDate() == new Date().getDate() ? 'Сегодня ' : new Date(data).getDate();
+                let messageMonth = getMonth();
+                let messageHours = new Date(data).getHours();
+                let messageMinutes = new Date(data).getMinutes() < 9 ? '0' + new Date(data).getMinutes() : new Date(data).getMinutes();
+
+
+                function getMonth() {
+                    let allMonth = {
+                        0: 'Января',
+                        1: 'Февраля',
+                        2: 'Марта',
+                        3: 'Апреля',
+                        4: 'Мая',
+                        5: 'Июня',
+                        6: 'Июля',
+                        7: 'Августа',
+                        8: 'Сентября',
+                        9: 'Октября',
+                        10: 'Ноября',
+                        11: 'Декабря',
+                    };
+                    return allMonth[new Date(data).getMonth()];
+                }
+
+                let fullMessageDate = messageDay == 'Сегодня ' ?
+                    messageDay + ' в ' + messageHours + ':' + messageMinutes :
+                    messageDay + ' ' + messageMonth + ' в ' + messageHours + ':' + messageMinutes;
+
+                return fullMessageDate;
             }
         },
 

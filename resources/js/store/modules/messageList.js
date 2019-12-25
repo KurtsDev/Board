@@ -14,10 +14,11 @@ export default {
     },
     state: {
         messages: [],
+
     },
     getters: {
         getMessages(state) {
-            return state.messages;
+            return state.messages.reverse();
         }
     }
 }

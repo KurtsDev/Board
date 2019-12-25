@@ -38,6 +38,7 @@
         methods: {
             messageSubmit() {
                 this.$store.dispatch('messageSubmit')
+                this.$store.dispatch('getMessage')
             },
         }
     }
