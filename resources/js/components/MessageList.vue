@@ -2,35 +2,34 @@
     <div class="messageList">
         <h3>Messages</h3>
         <ul>
-            <li :key="message.id" v-for="message in messages">{{ message.title }} - {{ message.created_at }}</li>
+            <li :key="message.id" v-for="message in getMessages">{{ message.title }} - {{ message.created_at }}</li>
         </ul>
 
-
+        <div v-if="loading">
+            <p>111</p>
+        </div>
 
     </div>
-
-
 
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                messages: [],
-
+        computed: {
+            getMessages() {
+                console.log('1');
+                return this.$store.getters.getMessages;
+            },
+            loading() {
+                return this.$store.getters.loading;
             }
         },
-        created() {
-            axios.get('api/getMessage')
-                .then(response => {
-                    this.messages = response.data;
-                })
-        },
 
+        async mounted() {
+            this.$store.dispatch('getMessage')
+        }
 
     }
-
 
 
 </script>
