@@ -1895,8 +1895,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
+    messageUserName: {
+      get: function get() {
+        return this.$store.state.messageUserName;
+      },
+      set: function set(messageUserName) {
+        this.$store.dispatch('setMessageUserName', messageUserName);
+      }
+    },
+    messageUserEmail: {
+      get: function get() {
+        return this.$store.state.messageUserEmail;
+      },
+      set: function set(messageUserEmail) {
+        this.$store.dispatch('setMessageUserEmail', messageUserEmail);
+      }
+    },
+    messageUserPhone: {
+      get: function get() {
+        return this.$store.state.messageUserPhone;
+      },
+      set: function set(messageUserPhone) {
+        this.$store.dispatch('setMessageUserPhone', messageUserPhone);
+      }
+    },
     messageTitleVal: {
       get: function get() {
         return this.$store.state.messageTitleVal;
@@ -1936,6 +1969,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
+//
+//
 //
 //
 //
@@ -2054,7 +2089,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.messageList[data-v-6a7499aa] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    -webkit-box-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n            justify-content: center;\n}\n", ""]);
+exports.push([module.i, "\n.messageList[data-v-6a7499aa] {\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n            flex-direction: column;\n    -webkit-box-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n            justify-content: center;\n}\n.show[data-v-6a7499aa] {\n    display: block;\n}\n.hiden[data-v-6a7499aa] {\n    display: none;\n}\n\n\n", ""]);
 
 // exports
 
@@ -21141,6 +21176,89 @@ var render = function() {
         }
       },
       [
+        _c("label", { attrs: { for: "messageUserName" } }, [_vm._v("Имя")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.messageUserName,
+              expression: "messageUserName"
+            }
+          ],
+          attrs: {
+            type: "text",
+            id: "messageUserName",
+            name: "messageUserName"
+          },
+          domProps: { value: _vm.messageUserName },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.messageUserName = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "messageUserEmail" } }, [_vm._v("E-mail")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.messageUserEmail,
+              expression: "messageUserEmail"
+            }
+          ],
+          attrs: {
+            type: "text",
+            id: "messageUserEmail",
+            name: "messageUserEmail"
+          },
+          domProps: { value: _vm.messageUserEmail },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.messageUserEmail = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "messageUserPhone" } }, [
+          _vm._v("Телефон")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.messageUserPhone,
+              expression: "messageUserPhone"
+            }
+          ],
+          attrs: {
+            type: "text",
+            id: "messageUserPhone",
+            name: "messageUserPhone"
+          },
+          domProps: { value: _vm.messageUserPhone },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.messageUserPhone = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c("label", { attrs: { for: "messageTitle" } }, [_vm._v("Заголовок")]),
         _vm._v(" "),
         _c("input", {
@@ -21175,7 +21293,7 @@ var render = function() {
               expression: "messageTextVal"
             }
           ],
-          attrs: { name: "messageText", id: "messageText" },
+          attrs: { type: "text", id: "messageText", name: "messageText" },
           domProps: { value: _vm.messageTextVal },
           on: {
             input: function($event) {
@@ -21222,12 +21340,33 @@ var render = function() {
           _c("p", [
             _vm._v(
               _vm._s(message.title) +
-                " - " +
+                " (" +
+                _vm._s(message.name) +
+                ") - " +
                 _vm._s(_vm.getDate(message.created_at))
             )
           ]),
           _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(message.message))])
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: message.show,
+                  expression: "message.show"
+                }
+              ]
+            },
+            [
+              _c("p", [_vm._v(_vm._s(message.email))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(message.phone))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(message.message))])
+            ]
+          )
         ])
       }),
       0
@@ -37715,23 +37854,47 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   actions: {
-    setMessageTitleVal: function setMessageTitleVal(_ref, messageTitleVal) {
+    setMessageUserName: function setMessageUserName(_ref, messageUserName) {
       var commit = _ref.commit;
+      commit('setMessageUserName', messageUserName);
+    },
+    setMessageUserEmail: function setMessageUserEmail(_ref2, messageUserEmail) {
+      var commit = _ref2.commit;
+      commit('setMessageUserEmail', messageUserEmail);
+    },
+    setMessageUserPhone: function setMessageUserPhone(_ref3, messageUserPhone) {
+      var commit = _ref3.commit;
+      commit('setMessageUserPhone', messageUserPhone);
+    },
+    setMessageTitleVal: function setMessageTitleVal(_ref4, messageTitleVal) {
+      var commit = _ref4.commit;
       commit('setMessageTitleVal', messageTitleVal);
     },
-    setMessageTextVal: function setMessageTextVal(_ref2, messageTextVal) {
-      var commit = _ref2.commit;
+    setMessageTextVal: function setMessageTextVal(_ref5, messageTextVal) {
+      var commit = _ref5.commit;
       commit('setMessageTextVal', messageTextVal);
     },
-    messageSubmit: function messageSubmit(_ref3) {
-      var state = _ref3.state;
+    messageSubmit: function messageSubmit(_ref6) {
+      var state = _ref6.state;
       axios.post('/api/store', {
+        name: state.messageUserName,
+        email: state.messageUserEmail,
+        phone: state.messageUserPhone,
         title: state.messageTitleVal,
         message: state.messageTextVal
       }).then(function (response) {});
     }
   },
   mutations: {
+    setMessageUserName: function setMessageUserName(state, messageUserName) {
+      return state.messageUserName = messageUserName;
+    },
+    setMessageUserEmail: function setMessageUserEmail(state, messageUserEmail) {
+      return state.messageUserEmail = messageUserEmail;
+    },
+    setMessageUserPhone: function setMessageUserPhone(state, messageUserPhone) {
+      return state.messageUserPhone = messageUserPhone;
+    },
     setMessageTitleVal: function setMessageTitleVal(state, messageTitleVal) {
       return state.messageTitleVal = messageTitleVal;
     },
@@ -37740,6 +37903,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   state: {
+    messageUserName: '',
+    messageUserEmail: '',
+    messageUserPhone: '',
     messageTitleVal: '',
     messageTextVal: ''
   },
@@ -37762,12 +37928,18 @@ __webpack_require__.r(__webpack_exports__);
     getMessage: function getMessage(context) {
       axios.get('api/getMessage').then(function (response) {
         context.commit('updateMessage', response.data);
+        context.commit('addShowColumn');
       });
     }
   },
   mutations: {
     updateMessage: function updateMessage(state, messages) {
       state.messages = messages;
+    },
+    addShowColumn: function addShowColumn(state) {
+      state.messages.map(function (item) {
+        Vue.set(item, 'show', true);
+      });
     }
   },
   state: {

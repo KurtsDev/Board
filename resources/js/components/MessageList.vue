@@ -1,12 +1,14 @@
 <template>
     <div class="messageList">
         <ul>
-
             <li :key="message.id" v-for="message in getMessages">
-                <p>{{ message.title }} - {{ getDate(message.created_at) }}</p>
+                <p>{{ message.title }} ({{ message.name }}) - {{ getDate(message.created_at) }}</p>
+
+                <div v-show="message.show">
+                <p>{{ message.email }}</p>
+                <p>{{ message.phone }}</p>
                 <p>{{ message.message }}</p>
-
-
+                </div>
             </li>
         </ul>
     </div>
@@ -16,12 +18,20 @@
 <script>
     export default {
         computed: {
+
+
+
             getMessages() {
                 return this.$store.getters.getMessages;
             },
         },
 
         methods: {
+
+
+
+
+
             getDate(data) {
                 let messageDay = new Date(data).getDate() == new Date().getDate() ? 'Сегодня ' : new Date(data).getDate();
                 let messageMonth = getMonth();
@@ -57,7 +67,8 @@
 
         async mounted() {
             this.$store.dispatch('getMessage')
-        }
+        },
+
 
     }
 
@@ -71,4 +82,14 @@
         align-items: center;
         justify-content: center;
     }
+
+    .show {
+        display: block;
+    }
+
+    .hiden {
+        display: none;
+    }
+
+
 </style>
