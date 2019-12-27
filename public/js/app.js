@@ -1993,6 +1993,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    showMessage: function showMessage(id) {
+      this.$store.dispatch('showMessage', id);
+    },
     getDate: function getDate(data) {
       var messageDay = new Date(data).getDate() == new Date().getDate() ? 'Сегодня ' : new Date(data).getDate();
       var messageMonth = getMonth();
@@ -21336,38 +21339,49 @@ var render = function() {
     _c(
       "ul",
       _vm._l(_vm.getMessages, function(message) {
-        return _c("li", { key: message.id }, [
-          _c("p", [
-            _vm._v(
-              _vm._s(message.title) +
-                " (" +
-                _vm._s(message.name) +
-                ") - " +
-                _vm._s(_vm.getDate(message.created_at))
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: message.show,
-                  expression: "message.show"
-                }
+        return _c(
+          "li",
+          {
+            key: message.id,
+            on: {
+              click: function($event) {
+                return _vm.showMessage(message.id)
+              }
+            }
+          },
+          [
+            _c("p", [
+              _vm._v(
+                _vm._s(message.title) +
+                  " (" +
+                  _vm._s(message.name) +
+                  ") - " +
+                  _vm._s(_vm.getDate(message.created_at))
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: message.show,
+                    expression: "message.show"
+                  }
+                ]
+              },
+              [
+                _c("p", [_vm._v(_vm._s(message.email))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(message.phone))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(message.message))])
               ]
-            },
-            [
-              _c("p", [_vm._v(_vm._s(message.email))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(message.phone))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(message.message))])
-            ]
-          )
-        ])
+            )
+          ]
+        )
       }),
       0
     )
@@ -37928,17 +37942,20 @@ __webpack_require__.r(__webpack_exports__);
     getMessage: function getMessage(context) {
       axios.get('api/getMessage').then(function (response) {
         context.commit('updateMessage', response.data);
-        context.commit('addShowColumn');
       });
+    },
+    showMessage: function showMessage(context, id) {
+      context.commit('showMessage', id);
     }
   },
   mutations: {
     updateMessage: function updateMessage(state, messages) {
       state.messages = messages;
     },
-    addShowColumn: function addShowColumn(state) {
-      state.messages.map(function (item) {
-        Vue.set(item, 'show', true);
+    showMessage: function showMessage(id) {
+      console.log(id);
+      this.state.messages.forEach(function (item) {
+        return item.id === id ? item.show = false : true;
       });
     }
   },

@@ -1,13 +1,13 @@
 <template>
     <div class="messageList">
         <ul>
-            <li :key="message.id" v-for="message in getMessages">
+            <li :key="message.id" v-for="message in getMessages" v-on:click="showMessage(message.id)">
                 <p>{{ message.title }} ({{ message.name }}) - {{ getDate(message.created_at) }}</p>
 
                 <div v-show="message.show">
-                <p>{{ message.email }}</p>
-                <p>{{ message.phone }}</p>
-                <p>{{ message.message }}</p>
+                    <p>{{ message.email }}</p>
+                    <p>{{ message.phone }}</p>
+                    <p>{{ message.message }}</p>
                 </div>
             </li>
         </ul>
@@ -20,7 +20,6 @@
         computed: {
 
 
-
             getMessages() {
                 return this.$store.getters.getMessages;
             },
@@ -28,8 +27,9 @@
 
         methods: {
 
-
-
+            showMessage(id) {
+                this.$store.dispatch('showMessage', id)
+    },
 
 
             getDate(data) {

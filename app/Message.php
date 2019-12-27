@@ -16,4 +16,11 @@ class Message extends Model
         'message',
     ];
 
+    protected $appends = ['show'];
+
+    public function getShowAttribute()
+    {
+        return false;
+    }
+
 }

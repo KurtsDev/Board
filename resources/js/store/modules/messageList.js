@@ -4,19 +4,22 @@ export default {
             axios.get('api/getMessage')
                 .then(response => {
                     context.commit('updateMessage', response.data);
-                    context.commit('addShowColumn')
                 })
-        }
+        },
+
+        showMessage: (context, id) => {
+            context.commit('showMessage', id);
+        },
+
     },
     mutations: {
         updateMessage(state, messages) {
             state.messages = messages;
         },
 
-        addShowColumn(state) {
-            state.messages.map(function (item) {
-                Vue.set(item, 'show', true);
-            })
+        showMessage(id) {
+            console.log(id)
+            this.state.messages.forEach(item => item.id === id ? item.show = false : true)
         },
 
     },
