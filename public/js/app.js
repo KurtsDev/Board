@@ -37952,10 +37952,9 @@ __webpack_require__.r(__webpack_exports__);
     updateMessage: function updateMessage(state, messages) {
       state.messages = messages;
     },
-    showMessage: function showMessage(id) {
-      console.log(id);
-      this.state.messages.forEach(function (item) {
-        return item.id === id ? item.show = false : true;
+    showMessage: function showMessage(state, id) {
+      state.messages.forEach(function (item) {
+        if (item.id === id) item.show = !item.show;
       });
     }
   },

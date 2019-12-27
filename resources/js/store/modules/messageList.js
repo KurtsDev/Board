@@ -17,9 +17,11 @@ export default {
             state.messages = messages;
         },
 
-        showMessage(id) {
-            console.log(id)
-            this.state.messages.forEach(item => item.id === id ? item.show = false : true)
+        showMessage(state, id) {
+            state.messages.forEach(function (item) {
+                if (item.id === id)
+                    item.show = !item.show;
+            });
         },
 
     },

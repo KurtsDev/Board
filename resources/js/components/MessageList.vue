@@ -29,7 +29,7 @@
 
             showMessage(id) {
                 this.$store.dispatch('showMessage', id)
-    },
+            },
 
 
             getDate(data) {
