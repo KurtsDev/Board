@@ -19,9 +19,15 @@
 </script>
 
 <style scoped>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
     div {
         display: flex;
         flex-direction: column;
+        width: 500px;
     }
 </style>
 

@@ -23,4 +23,9 @@ class Message extends Model
         return false;
     }
 
+    public function getNameAttribute($name)
+    {
+        return $name !== null ? '('.$name.')' : null;
+    }
+
 }

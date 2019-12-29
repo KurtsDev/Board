@@ -2,7 +2,7 @@
     <div class="messageList">
         <ul>
             <li :key="message.id" v-for="message in getMessages" v-on:click="showMessage(message.id)">
-                <p>{{ message.title }} ({{ message.name }}) - {{ getDate(message.created_at) }}</p>
+                <p class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at) }}</p>
 
                 <div v-show="message.show">
                     <p>{{ message.email }}</p>
@@ -81,6 +81,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        list-style-type: none;
     }
 
     .show {
@@ -89,6 +90,15 @@
 
     .hiden {
         display: none;
+    }
+
+    .messageString {
+        cursor: pointer;
+        color: #21254B
+    }
+
+    .messageString:hover {
+        color: #212506;
     }
 
 
