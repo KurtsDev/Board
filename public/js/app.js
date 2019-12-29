@@ -1899,33 +1899,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
-    nameValid: function nameValid() {
-      return this.$store.getters.currentBlurInput == 'messageUserName' ? this.$store.getters.nameValid : null;
+    validMessageUserName: function validMessageUserName() {
+      console.log();
+      return this.$store.getters.validMessageUserName;
     },
-    emailValid: function emailValid() {
-      return this.$store.getters.currentBlurInput == 'messageUserEmail' ? this.$store.getters.emailValid : null;
+    validMessageUserEmail: function validMessageUserEmail() {
+      return this.$store.getters.validMessageUserEmail;
     },
-    phoneValid: function phoneValid() {
-      return this.$store.getters.currentBlurInput == 'messageUserPhone' ? this.$store.getters.phoneValid : null;
+    validMessageUserPhone: function validMessageUserPhone() {
+      return this.$store.getters.validMessageUserPhone;
     },
-    titleValid: function titleValid() {
-      return this.$store.getters.currentBlurInput == 'messageTitle' ? this.$store.getters.titleValid : null;
+    validMessageTitle: function validMessageTitle() {
+      return this.$store.getters.validMessageTitle;
     },
-    messageValid: function messageValid() {
-      return this.$store.getters.currentBlurInput == 'messageText' ? this.$store.getters.messageValid : null;
+    validMessageText: function validMessageText() {
+      return this.$store.getters.validMessageText;
+    },
+    submitDisabled: function submitDisabled() {
+      if (this.$store.getters.validMessageUserName === false || null || this.$store.getters.validMessageUserEmail === false || null || this.$store.getters.validMessageUserPhone === false || null || !this.$store.getters.validMessageTitle || !this.$store.getters.validMessageText) {
+        return true;
+      }
     },
     messageUserName: {
       get: function get() {
@@ -1972,10 +1967,6 @@ __webpack_require__.r(__webpack_exports__);
     messageSubmit: function messageSubmit() {
       this.$store.dispatch('messageSubmit');
       this.$store.dispatch('getMessage');
-    },
-    onblur: function onblur(event) {
-      if (event) console.log(event.target.id);
-      this.$store.dispatch('currentBlurInput', event.target.id);
     }
   }
 });
@@ -53237,14 +53228,13 @@ var render = function() {
         [
           _c("b-form-input", {
             attrs: {
+              state: _vm.validMessageUserName,
               autocomplete: "off",
               type: "text",
               id: "messageUserName",
               placeholder: "Имя",
-              name: "messageUserName",
-              state: _vm.nameValid
+              name: "messageUserName"
             },
-            on: { blur: _vm.onblur },
             model: {
               value: _vm.messageUserName,
               callback: function($$v) {
@@ -53254,20 +53244,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("b-form-invalid-feedback", { attrs: { id: "nameValid" } }, [
-            _vm._v('Поле "Имя" должно содержать не более 30 символов')
-          ]),
-          _vm._v(" "),
           _c("b-form-input", {
             attrs: {
+              state: _vm.validMessageUserEmail,
               autocomplete: "off",
               type: "text",
               id: "messageUserEmail",
               placeholder: "E-mail",
-              name: "messageUserEmail",
-              state: _vm.emailValid
+              name: "messageUserEmail"
             },
-            on: { blur: _vm.onblur },
             model: {
               value: _vm.messageUserEmail,
               callback: function($$v) {
@@ -53277,22 +53262,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("b-form-invalid-feedback", { attrs: { id: "emailValid" } }, [
-            _vm._v(
-              'Поле "E-mail" должно быть корректным е-мейлом и содержать не более 129 символов'
-            )
-          ]),
-          _vm._v(" "),
           _c("b-form-input", {
             attrs: {
+              state: _vm.validMessageUserPhone,
               autocomplete: "off",
               type: "text",
               id: "messageUserPhone",
               placeholder: "Телефон",
-              name: "messageUserPhone",
-              state: _vm.phoneValid
+              name: "messageUserPhone"
             },
-            on: { blur: _vm.onblur },
             model: {
               value: _vm.messageUserPhone,
               callback: function($$v) {
@@ -53302,20 +53280,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("b-form-invalid-feedback", { attrs: { id: "phoneValid" } }, [
-            _vm._v('Поле "Телефон" должно содержать не более 16 символов')
-          ]),
-          _vm._v(" "),
           _c("b-form-input", {
             attrs: {
+              state: _vm.validMessageTitle,
               autocomplete: "off",
               type: "text",
               id: "messageTitle",
               placeholder: "Заголовок *",
-              name: "messageTitle",
-              state: _vm.titleValid
+              name: "messageTitle"
             },
-            on: { blur: _vm.onblur },
             model: {
               value: _vm.messageTitleVal,
               callback: function($$v) {
@@ -53325,22 +53298,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("b-form-invalid-feedback", { attrs: { id: "titleValid" } }, [
-            _vm._v(
-              'Поле "Заголовок" обязательно для заполнения, не более 120 символов'
-            )
-          ]),
-          _vm._v(" "),
           _c("b-form-input", {
             attrs: {
+              state: _vm.validMessageText,
               autocomplete: "off",
               type: "text",
               id: "messageText",
               placeholder: "Сообщение *",
-              name: "messageText",
-              state: _vm.messageValid
+              name: "messageText"
             },
-            on: { blur: _vm.onblur },
             model: {
               value: _vm.messageTextVal,
               callback: function($$v) {
@@ -53350,13 +53316,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("b-form-invalid-feedback", { attrs: { id: "messageValid" } }, [
-            _vm._v(
-              'Поле "Сообщение" обязательно для заполнения, не более 700 символов'
-            )
-          ]),
-          _vm._v(" "),
-          _c("button", { attrs: { type: "submit" } }, [_vm._v("Отправить")])
+          _c(
+            "button",
+            { attrs: { disabled: _vm.submitDisabled, type: "submit" } },
+            [_vm._v("Отправить")]
+          )
         ],
         1
       )
@@ -69978,11 +69942,7 @@ __webpack_require__.r(__webpack_exports__);
         phone: state.messageUserPhone,
         title: state.messageTitleVal,
         message: state.messageTextVal
-      }).then(commit('unsetBeforeSubmitError'))["catch"](commit('setBeforeSubmitError'));
-    },
-    currentBlurInput: function currentBlurInput(_ref7, value) {
-      var commit = _ref7.commit;
-      commit('setCurrentBlurInput', value);
+      }).then()["catch"]();
     }
   },
   mutations: {
@@ -70000,48 +69960,61 @@ __webpack_require__.r(__webpack_exports__);
     },
     setMessageTextVal: function setMessageTextVal(state, messageTextVal) {
       return state.messageTextVal = messageTextVal;
-    },
-    setBeforeSubmitError: function setBeforeSubmitError(state) {
-      return state.beforeSubmitError = false;
-    },
-    unsetBeforeSubmitError: function unsetBeforeSubmitError(state) {
-      return state.beforeSubmitError = true;
-    },
-    setCurrentBlurInput: function setCurrentBlurInput(state, value) {
-      return state.currentBlurInput = value;
-    }
+    } // resetState: (state) => state
+
   },
   state: {
     messageUserName: '',
     messageUserEmail: '',
     messageUserPhone: '',
     messageTitleVal: '',
-    messageTextVal: '',
-    beforeSubmitError: true,
-    currentBlurInput: ''
+    messageTextVal: ''
   },
   getters: {
-    nameValid: function nameValid(state) {
-      return state.messageUserName.length < 31;
+    validMessageUserName: function validMessageUserName(state) {
+      if (state.messageUserName.length === 0) {
+        return null;
+      } else if (state.messageUserName.length < 30) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    emailValid: function emailValid(state) {
-      if (state.messageUserEmail.length === 0) return true;
+    validMessageUserEmail: function validMessageUserEmail(state) {
       var regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      var regExpEmail = regExp.test(state.messageUserEmail);
-      var emailValidResult = state.messageUserEmail.length < 130 && regExpEmail;
-      return emailValidResult;
+
+      if (state.messageUserEmail.length === 0) {
+        return null;
+      } else if (regExp.test(state.messageUserEmail) && state.messageUserEmail.length < 130) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    phoneValid: function phoneValid(state) {
-      return state.messageUserPhone.length < 17;
+    validMessageUserPhone: function validMessageUserPhone(state) {
+      var regExp = /[A-zА-яЁё]/;
+
+      if (state.messageUserPhone.length === 0) {
+        return null;
+      } else if (!regExp.test(state.messageUserPhone) && state.messageUserPhone.length < 30) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    titleValid: function titleValid(state) {
-      return state.messageTitleVal.length > 0 && state.messageTitleVal.length < 121;
+    validMessageTitle: function validMessageTitle(state) {
+      if (state.messageTitleVal.length === 0) {
+        return false;
+      } else if (state.messageUserName.length < 120) {
+        return true;
+      }
     },
-    messageValid: function messageValid(state) {
-      return state.messageTextVal.length > 0 && state.messageTextVal.length < 701;
-    },
-    currentBlurInput: function currentBlurInput(state) {
-      return state.currentBlurInput;
+    validMessageText: function validMessageText(state) {
+      if (state.messageTextVal.length === 0) {
+        return false;
+      } else if (state.messageTextVal.length < 700) {
+        return true;
+      }
     }
   }
 });

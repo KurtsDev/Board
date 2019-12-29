@@ -27,7 +27,7 @@ class CreateMessageRequest extends FormRequest
         return [
             'name' => 'nullable|max:30',
             'email' => 'nullable|email|max:129',
-            'phone' => 'nullable|max:16',
+            'phone' => 'nullable|max:30',
             'title' => 'required|max:120',
             'message' => 'required|max:700'
         ];

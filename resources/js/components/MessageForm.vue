@@ -2,29 +2,18 @@
     <div class="messageArea">
         <b-form v-on:submit.prevent="messageSubmit">
 
-            <b-form-input v-on:blur="onblur"  autocomplete="off" type="text" id="messageUserName" placeholder="Имя" name="messageUserName" v-model="messageUserName" :state="nameValid"></b-form-input>
-            <b-form-invalid-feedback id="nameValid">Поле "Имя" должно содержать не более 30 символов</b-form-invalid-feedback>
+            <b-form-input :state="validMessageUserName" autocomplete="off" type="text" id="messageUserName" placeholder="Имя" name="messageUserName" v-model="messageUserName"></b-form-input>
 
-            <b-form-input v-on:blur="onblur" autocomplete="off" type="text" id="messageUserEmail" placeholder="E-mail" name="messageUserEmail" v-model="messageUserEmail" :state="emailValid"></b-form-input>
-            <b-form-invalid-feedback id="emailValid">Поле "E-mail" должно быть корректным е-мейлом и содержать не более 129 символов</b-form-invalid-feedback>
+            <b-form-input :state="validMessageUserEmail" autocomplete="off" type="text" id="messageUserEmail" placeholder="E-mail" name="messageUserEmail" v-model="messageUserEmail"></b-form-input>
 
-            <b-form-input v-on:blur="onblur" autocomplete="off" type="text" id="messageUserPhone" placeholder="Телефон" name="messageUserPhone" v-model="messageUserPhone" :state="phoneValid"></b-form-input>
-            <b-form-invalid-feedback id="phoneValid">Поле "Телефон" должно содержать не более 16 символов</b-form-invalid-feedback>
+            <b-form-input :state="validMessageUserPhone" autocomplete="off" type="text" id="messageUserPhone" placeholder="Телефон" name="messageUserPhone" v-model="messageUserPhone"></b-form-input>
 
+            <b-form-input :state="validMessageTitle" autocomplete="off" type="text" id="messageTitle" placeholder="Заголовок *" name="messageTitle" v-model="messageTitleVal"></b-form-input>
 
+            <b-form-input :state="validMessageText" autocomplete="off" type="text" id="messageText" placeholder="Сообщение *" name="messageText" v-model="messageTextVal"></b-form-input>
 
-            <b-form-input v-on:blur="onblur" autocomplete="off" type="text" id="messageTitle" placeholder="Заголовок *" name="messageTitle" v-model="messageTitleVal" :state="titleValid"></b-form-input>
-            <b-form-invalid-feedback id="titleValid">Поле "Заголовок" обязательно для заполнения, не более 120 символов</b-form-invalid-feedback>
-
-
-
-            <b-form-input v-on:blur="onblur" autocomplete="off" type="text" id="messageText" placeholder="Сообщение *" name="messageText" v-model="messageTextVal" :state="messageValid"></b-form-input>
-            <b-form-invalid-feedback id="messageValid">Поле "Сообщение" обязательно для заполнения, не более 700 символов</b-form-invalid-feedback>
-
-
-
-            <button type="submit">Отправить</button>
-
+            <button :disabled="submitDisabled" type="submit">Отправить</button>
+<!--true lkz disable-->
         </b-form>
     </div>
 </template>
@@ -32,24 +21,33 @@
 <script>
     export default {
         computed: {
+            validMessageUserName() {
+                console.log();
+                return this.$store.getters.validMessageUserName;
+            },
+            validMessageUserEmail() {
+                return this.$store.getters.validMessageUserEmail;
+            },
+            validMessageUserPhone() {
+                return this.$store.getters.validMessageUserPhone;
+            },
+            validMessageTitle() {
+                return this.$store.getters.validMessageTitle;
+            },
+            validMessageText() {
+                return this.$store.getters.validMessageText;
+            },
+            submitDisabled() {
+                if ((this.$store.getters.validMessageUserName === false || null) ||
+                    (this.$store.getters.validMessageUserEmail === false || null) ||
+                    (this.$store.getters.validMessageUserPhone === false || null) ||
+                    (!this.$store.getters.validMessageTitle) ||
+                    (!this.$store.getters.validMessageText)) {
+                    return true;
+                }
 
-            nameValid() {
-                return this.$store.getters.currentBlurInput == 'messageUserName' ? this.$store.getters.nameValid : null;
             },
-            emailValid() {
-               return  this.$store.getters.currentBlurInput == 'messageUserEmail' ? this.$store.getters.emailValid : null;
 
-            },
-            phoneValid() {
-                return  this.$store.getters.currentBlurInput == 'messageUserPhone' ? this.$store.getters.phoneValid : null;
-            },
-            titleValid() {
-                return  this.$store.getters.currentBlurInput == 'messageTitle' ? this.$store.getters.titleValid : null;
-            },
-            messageValid() {
-                return  this.$store.getters.currentBlurInput == 'messageText' ? this.$store.getters.messageValid : null;
-
-            },
 
             messageUserName: {
                 get() {
@@ -100,14 +98,11 @@
             messageSubmit() {
                 this.$store.dispatch('messageSubmit')
                 this.$store.dispatch('getMessage')
+                
             },
 
-            onblur: function(event) {
-                if (event)
-                    console.log(event.target.id);
-                this.$store.dispatch('currentBlurInput', event.target.id)
-                },
-            },
+        },
+
 
     }
 </script>
