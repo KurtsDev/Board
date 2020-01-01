@@ -29,13 +29,11 @@ export default {
                 })
                 .then(
 
-                    // commit('setMessageTextVal', '')
                 )
                 .catch(
 
                 )
         },
-
 
     },
     mutations: {
@@ -44,7 +42,6 @@ export default {
         setMessageUserPhone: (state, messageUserPhone) => state.messageUserPhone = messageUserPhone,
         setMessageTitleVal: (state, messageTitleVal) => state.messageTitleVal = messageTitleVal,
         setMessageTextVal: (state, messageTextVal) => state.messageTextVal = messageTextVal,
-        // resetState: (state) => state
 
 
 

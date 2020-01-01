@@ -1,13 +1,20 @@
 <template>
     <div class="messageList">
         <ul>
-            <li :key="message.id" v-for="message in getMessages" v-on:click="showMessage(message.id)">
-                <p class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at) }}</p>
+            <li :key="message.id"
+                v-for="message in getMessages">
+                <div class="liArrow">
+                    <img v-bind:class="{arrowOpen: message.show, arrowClose: !message.show}"
+                         src="../../images/arrow.png">
+                    <p v-on:click="showMessage(message.id)" class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at)
+                        }}</p>
+                </div>
 
-                <div v-show="message.show">
-                    <p>{{ message.email }}</p>
-                    <p>{{ message.phone }}</p>
+                <div class="details" v-show="message.show">
+                    <a v-if="message.email" v-bind:href="mailTo(message.email)">{{ message.email }}</a>
+                    <a v-if="message.phone" v-bind:href="tel(message.phone)">{{ message.phone }}</a>
                     <p>{{ message.message }}</p>
+                    <b-button>Открыть чат</b-button>
                 </div>
             </li>
         </ul>
@@ -19,7 +26,6 @@
     export default {
         computed: {
 
-
             getMessages() {
                 return this.$store.getters.getMessages;
             },
@@ -27,17 +33,23 @@
 
         methods: {
 
+            mailTo(email) {
+                return 'mailto:' + email;
+            },
+
+            tel(phone) {
+                return 'tel:' + phone;
+            },
+
             showMessage(id) {
                 this.$store.dispatch('showMessage', id)
             },
-
 
             getDate(data) {
                 let messageDay = new Date(data).getDate() == new Date().getDate() ? 'Сегодня ' : new Date(data).getDate();
                 let messageMonth = getMonth();
                 let messageHours = new Date(data).getHours();
                 let messageMinutes = new Date(data).getMinutes() < 9 ? '0' + new Date(data).getMinutes() : new Date(data).getMinutes();
-
 
                 function getMonth() {
                     let allMonth = {
@@ -69,13 +81,13 @@
             this.$store.dispatch('getMessage')
         },
 
-
     }
 
 
 </script>
 
 <style scoped>
+
     .messageList {
         display: flex;
         flex-direction: column;
@@ -84,12 +96,38 @@
         list-style-type: none;
     }
 
-    .show {
-        display: block;
+    li {
+        list-style: none;
     }
 
-    .hiden {
-        display: none;
+    .liArrow {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .liArrow img {
+        margin: 5px 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+    }
+
+    .arrowOpen, .arrowClose {
+        transition-duration: .2s;
+    }
+
+    .arrowOpen {
+        transform: rotate(270deg);
+    }
+
+    .arrowClose {
+        transform: rotate(180deg);
     }
 
     .messageString {

@@ -13,7 +13,7 @@
             <b-form-input :state="validMessageText" autocomplete="off" type="text" id="messageText" placeholder="Сообщение *" name="messageText" v-model="messageTextVal"></b-form-input>
 
             <button :disabled="submitDisabled" type="submit">Отправить</button>
-<!--true lkz disable-->
+
         </b-form>
     </div>
 </template>
@@ -54,7 +54,7 @@
                     return this.$store.state.messageUserName;
                 },
                 set(messageUserName) {
-                    this.$store.dispatch('setMessageUserName', messageUserName)
+                    this.$store.commit('setMessageUserName', messageUserName)
                 }
             },
 
@@ -63,7 +63,7 @@
                     return this.$store.state.messageUserEmail;
                 },
                 set(messageUserEmail) {
-                    this.$store.dispatch('setMessageUserEmail', messageUserEmail)
+                    this.$store.commit('setMessageUserEmail', messageUserEmail)
                 }
             },
 
@@ -72,7 +72,7 @@
                     return this.$store.state.messageUserPhone;
                 },
                 set(messageUserPhone) {
-                    this.$store.dispatch('setMessageUserPhone', messageUserPhone)
+                    this.$store.commit('setMessageUserPhone', messageUserPhone)
                 }
             },
 
@@ -81,7 +81,7 @@
                     return this.$store.state.messageTitleVal;
                 },
                 set(messageTitleVal) {
-                    this.$store.dispatch('setMessageTitleVal', messageTitleVal)
+                    this.$store.commit('setMessageTitleVal', messageTitleVal)
                 }
             },
             messageTextVal: {
@@ -89,7 +89,7 @@
                     return this.$store.state.messageTextVal;
                 },
                 set(messageTextVal) {
-                    this.$store.dispatch('setMessageTextVal', messageTextVal)
+                    this.$store.commit('setMessageTextVal', messageTextVal)
                 }
             },
         },
@@ -98,7 +98,6 @@
             messageSubmit() {
                 this.$store.dispatch('messageSubmit')
                 this.$store.dispatch('getMessage')
-                
             },
 
         },
