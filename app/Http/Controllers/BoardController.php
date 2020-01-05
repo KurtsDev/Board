@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use App\Http\Requests\CreateMessageRequest;
 use App\Message;
 use Illuminate\Http\Request;
@@ -17,9 +18,13 @@ class BoardController extends Controller
        return $message;
    }
 
-   function store(CreateMessageRequest $request) {
+   function store(Request $request) {
 
        $message = new Message($request->all());
        $message->save();
+       event(New NewMessage($message));
+
    }
+
+
 }

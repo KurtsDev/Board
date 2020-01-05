@@ -10,6 +10,7 @@
                         }}</p>
                 </div>
 
+
                 <div class="details" v-show="message.show">
                     <a v-if="message.email" v-bind:href="mailTo(message.email)">{{ message.email }}</a>
                     <a v-if="message.phone" v-bind:href="tel(message.phone)">{{ message.phone }}</a>
@@ -24,12 +25,15 @@
 
 <script>
     export default {
+
         computed: {
 
             getMessages() {
                 return this.$store.getters.getMessages;
             },
         },
+
+
 
         methods: {
 
@@ -77,8 +81,15 @@
             }
         },
 
-        async mounted() {
-            this.$store.dispatch('getMessage')
+         mounted() {
+            this.$store.dispatch('getMessage');
+
+            var socket = io('http://localhost:3000');
+            socket.on("message-channel:App\\Events\\NewMessage", function(data) {
+
+            });
+
+
         },
 
     }
