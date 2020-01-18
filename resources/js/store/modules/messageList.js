@@ -1,23 +1,34 @@
 export default {
     actions: {
-        getMessage: (context) => {
-            axios.get('api/getMessage')
-                .then(response => {
-                    context.commit('updateMessage', response.data);
+        initListMessage: (context, state) => {
+            axios.get('api/initListMessage', {
+                params: {
+                    cityId: context.rootState.messageForm.messageCityId
+                }
+            }).then(response => {
+                    context.commit('initListMessage', response.data);
                 })
+        },
+
+        realTimePushMessage: (context, message) => {
+            context.commit('realTimePushMessage', message);
         },
 
         showMessage: (context, id) => {
             context.commit('showMessage', id);
         },
-
     },
     mutations: {
-        updateMessage(state, messages) {
+        initListMessage(state, messages) {
             state.messages = messages;
         },
 
+        realTimePushMessage(state, message) {
+            state.messages.push(message);
+        },
+
         showMessage(state, id) {
+            console.log(state.messages);
             state.messages.forEach(function (item) {
                 if (item.id === id)
                     item.show = !item.show;
@@ -25,13 +36,18 @@ export default {
         },
 
     },
+
     state: {
         messages: [],
 
     },
     getters: {
         getMessages(state) {
-            return state.messages.reverse();
+
+            return state.messages.sort(function (itemA, itemB) {
+                return (itemB.id - itemA.id)
+            });
+
         }
     }
 }

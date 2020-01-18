@@ -1,19 +1,20 @@
 <template>
     <div>
-        <MessageForm></MessageForm>
-        <MessageList></MessageList>
+        <router-view name="city"></router-view>
+        <router-view name="form"></router-view>
+        <router-view name="list"></router-view>
+        <!--        <message-form></message-form>-->
+        <!--        <message-list></message-list>-->
     </div>
 </template>
 
 <script>
-    import MessageList from './components/MessageList'
-    import MessageForm from './components/MessageForm'
+
+    import MessageForm from "./components/MessageForm";
+    import MessageList from "./components/MessageList";
 
     export default {
-        components: {
-            MessageForm,
-            MessageList,
-        }
+        components: {MessageList, MessageForm}
     }
 
 </script>
@@ -27,7 +28,6 @@
     div {
         display: flex;
         flex-direction: column;
-        width: 500px;
     }
 </style>
 

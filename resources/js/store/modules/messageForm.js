@@ -1,24 +1,5 @@
 export default {
     actions: {
-        setMessageUserName: ({commit}, messageUserName) => {
-            commit('setMessageUserName', messageUserName)
-        },
-
-        setMessageUserEmail: ({commit}, messageUserEmail) => {
-            commit('setMessageUserEmail', messageUserEmail)
-        },
-
-        setMessageUserPhone: ({commit}, messageUserPhone) => {
-            commit('setMessageUserPhone', messageUserPhone)
-        },
-
-        setMessageTitleVal: ({commit}, messageTitleVal) => {
-            commit('setMessageTitleVal', messageTitleVal)
-        },
-        setMessageTextVal: ({commit}, messageTextVal) => {
-            commit('setMessageTextVal', messageTextVal)
-        },
-
         messageSubmit: ({commit, state}) => {
             axios.post('/api/store', {
                     name: state.messageUserName,
@@ -26,13 +7,10 @@ export default {
                     phone: state.messageUserPhone,
                     title: state.messageTitleVal,
                     message: state.messageTextVal,
+                    city_id: state.messageCityId,
                 })
-                .then(
-
-                )
-                .catch(
-
-                )
+                .then()
+                .catch()
         },
 
     },
@@ -42,9 +20,7 @@ export default {
         setMessageUserPhone: (state, messageUserPhone) => state.messageUserPhone = messageUserPhone,
         setMessageTitleVal: (state, messageTitleVal) => state.messageTitleVal = messageTitleVal,
         setMessageTextVal: (state, messageTextVal) => state.messageTextVal = messageTextVal,
-
-
-
+        setMessageCityId: (state, messageCityId) => state.messageCityId = messageCityId,
     },
 
     state: {
@@ -53,6 +29,7 @@ export default {
         messageUserPhone: '',
         messageTitleVal: '',
         messageTextVal: '',
+        messageCityId: '',
     },
 
     getters: {
@@ -106,12 +83,6 @@ export default {
             }
         },
 
-
-
-
-
-
     },
 
 }
-

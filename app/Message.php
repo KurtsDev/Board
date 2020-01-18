@@ -14,6 +14,7 @@ class Message extends Model
         'phone',
         'title',
         'message',
+        'city_id',
     ];
 
     protected $appends = ['show'];

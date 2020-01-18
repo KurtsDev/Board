@@ -2,15 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab4bed97-8b27-4ece-bdfa-587b7df79682" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/CitySelect.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/store/modules/citySelect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startBoard.bash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Events/NewMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/NewMessage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_14_173047_create_messages_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_14_173047_create_messages_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/MessageForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MessageForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/MessageList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MessageList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/messageForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/messageForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/messageList.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/messageList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,20 +145,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Board echo vuex" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/images" />
       <recent name="$PROJECT_DIR$/resources/lang/ru" />
       <recent name="$PROJECT_DIR$/resources/lang" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/other" />
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/resources/js/components" />
+      <recent name="$PROJECT_DIR$/resources/js" />
     </key>
   </component>
   <component name="RunManager">
@@ -198,6 +214,18 @@
       <workItem from="1577908127708" duration="11020000" />
       <workItem from="1577973231191" duration="17617000" />
       <workItem from="1578221688899" duration="1017000" />
+      <workItem from="1578409523312" duration="13092000" />
+      <workItem from="1578731925301" duration="2000" />
+      <workItem from="1578732004577" duration="43000" />
+      <workItem from="1578732392762" duration="19000" />
+      <workItem from="1578732654277" duration="1547000" />
+      <workItem from="1578735246257" duration="9173000" />
+      <workItem from="1578750613986" duration="11084000" />
+      <workItem from="1578774339804" duration="29417000" />
+      <workItem from="1579023902350" duration="6426000" />
+      <workItem from="1579204421838" duration="11385000" />
+      <workItem from="1579376371855" duration="599000" />
+      <workItem from="1579380938547" duration="2314000" />
     </task>
     <servers />
   </component>
@@ -205,10 +233,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="177" width="509" height="384" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576402343499">
+    <state x="424" y="177" width="509" height="384" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578781214068">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
-    <state x="424" y="177" width="509" height="384" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.743@0.0.1366.743" timestamp="1576402343499" />
+    <state x="424" y="177" width="509" height="384" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.743@0.0.1366.743" timestamp="1578781214068" />
     <state x="416" y="121" width="526" height="496" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577739740500">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
@@ -217,6 +245,10 @@
       <screen x="0" y="0" width="1366" height="743" />
     </state>
     <state x="416" y="130" width="526" height="479" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.743@0.0.1366.743" timestamp="1577977193972" />
+    <state x="466" y="130" width="426" height="479" key="FileChooserDialogImpl" timestamp="1578749435219">
+      <screen x="0" y="0" width="1366" height="743" />
+    </state>
+    <state x="466" y="130" width="426" height="479" key="FileChooserDialogImpl/0.0.1366.743@0.0.1366.743" timestamp="1578749435219" />
     <state width="1320" height="178" key="GridCell.Tab.0.bottom" timestamp="1577958422569">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
@@ -237,17 +269,21 @@
       <screen x="0" y="0" width="1366" height="743" />
     </state>
     <state x="376" y="199" key="com.intellij.ide.util.TipDialog/0.0.1366.743@0.0.1366.743" timestamp="1575234180747" />
-    <state x="300" y="0" width="766" height="743" key="find.popup" timestamp="1577988218095">
+    <state x="300" y="0" width="766" height="743" key="find.popup" timestamp="1579355445921">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
-    <state x="300" y="0" width="766" height="743" key="find.popup/0.0.1366.743@0.0.1366.743" timestamp="1577988218095" />
-    <state x="346" y="164" key="run.anything.popup" timestamp="1577395114330">
+    <state x="300" y="0" width="766" height="743" key="find.popup/0.0.1366.743@0.0.1366.743" timestamp="1579355445921" />
+    <state x="346" y="164" key="run.anything.popup" timestamp="1579027835444">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
-    <state x="346" y="164" key="run.anything.popup/0.0.1366.743@0.0.1366.743" timestamp="1577395114330" />
-    <state x="346" y="64" width="672" height="678" key="search.everywhere.popup" timestamp="1575840438724">
+    <state x="346" y="164" key="run.anything.popup/0.0.1366.743@0.0.1366.743" timestamp="1579027835444" />
+    <state x="346" y="64" width="672" height="678" key="search.everywhere.popup" timestamp="1578778539557">
       <screen x="0" y="0" width="1366" height="743" />
     </state>
-    <state x="346" y="64" width="672" height="678" key="search.everywhere.popup/0.0.1366.743@0.0.1366.743" timestamp="1575840438724" />
+    <state x="346" y="64" width="672" height="678" key="search.everywhere.popup/0.0.1366.743@0.0.1366.743" timestamp="1578778539557" />
+    <state x="408" y="276" width="542" height="187" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1578411652061">
+      <screen x="0" y="0" width="1366" height="743" />
+    </state>
+    <state x="408" y="276" width="542" height="187" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.743@0.0.1366.743" timestamp="1578411652061" />
   </component>
 </project>

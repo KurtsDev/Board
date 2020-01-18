@@ -1,5 +1,6 @@
 <template>
     <div class="messageArea">
+
         <b-form v-on:submit.prevent="messageSubmit">
 
             <b-form-input :state="validMessageUserName" autocomplete="off" type="text" id="messageUserName" placeholder="Имя" name="messageUserName" v-model="messageUserName"></b-form-input>
@@ -20,9 +21,11 @@
 
 <script>
     export default {
+
+
         computed: {
+
             validMessageUserName() {
-                console.log();
                 return this.$store.getters.validMessageUserName;
             },
             validMessageUserEmail() {
@@ -96,11 +99,26 @@
 
         methods: {
             messageSubmit() {
-                this.$store.dispatch('messageSubmit')
-                this.$store.dispatch('getMessage')
+                this.$store.dispatch('messageSubmit');
             },
 
         },
+
+        mounted() {
+            this.$store.commit('setMessageCityId', this.$route.params.id);
+
+            window.Echo.channel('board_database_messageTitle').listen('NewMessage', ({message}) => {
+                this.$store.dispatch('realTimePushMessage', message)
+            });
+        },
+
+        destroyed() {
+            window.Echo.leave('board_database_messageTitle');
+        }
+
+
+
+
 
 
     }

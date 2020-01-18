@@ -1,15 +1,12 @@
 <template>
     <div class="messageList">
         <ul>
-            <li :key="message.id"
-                v-for="message in getMessages">
+            <li :key="message.id" v-for="message in getMessages">
                 <div class="liArrow">
                     <img v-bind:class="{arrowOpen: message.show, arrowClose: !message.show}"
                          src="../../images/arrow.png">
-                    <p v-on:click="showMessage(message.id)" class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at)
-                        }}</p>
+                    <p v-on:click="showMessage(message.id)" class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at) }}</p>
                 </div>
-
 
                 <div class="details" v-show="message.show">
                     <a v-if="message.email" v-bind:href="mailTo(message.email)">{{ message.email }}</a>
@@ -82,13 +79,7 @@
         },
 
          mounted() {
-            this.$store.dispatch('getMessage');
-
-            var socket = io('http://localhost:3000');
-            socket.on("message-channel:App\\Events\\NewMessage", function(data) {
-
-            });
-
+            this.$store.dispatch('initListMessage');
 
         },
 
