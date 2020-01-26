@@ -1,10 +1,10 @@
 <template>
     <div>
         <router-view name="city"></router-view>
+        <router-view name="chat"></router-view>
         <router-view name="form"></router-view>
         <router-view name="list"></router-view>
-        <!--        <message-form></message-form>-->
-        <!--        <message-list></message-list>-->
+
     </div>
 </template>
 
@@ -12,9 +12,10 @@
 
     import MessageForm from "./components/MessageForm";
     import MessageList from "./components/MessageList";
+    import Chat from "./components/Chat";
 
     export default {
-        components: {MessageList, MessageForm}
+        components: {MessageList, MessageForm, Chat}
     }
 
 </script>

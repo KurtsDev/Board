@@ -8,10 +8,44 @@ export default {
                     title: state.messageTitleVal,
                     message: state.messageTextVal,
                     city_id: state.messageCityId,
+                    created_at_valid: new Date(),
                 })
                 .then()
                 .catch()
         },
+
+
+
+        messageSendUnlockTime: async (context, state) => {
+
+            let response = await axios.get('api/messageNextDate');
+
+            let nextMessage = new Date(response.data);
+            let nextMessageSec = nextMessage / 1000 + 1;
+            nextMessageSec = Math.round(nextMessageSec);
+
+
+            let realtime = new Date() / 1000;
+            realtime = Math.round(realtime);
+
+            let messageSendUnlockTime = nextMessageSec - realtime;
+
+             let timer = setInterval(() => {
+
+                 if (messageSendUnlockTime > 0) {
+                     messageSendUnlockTime--;
+                     context.commit('lockTime', messageSendUnlockTime);
+                 } else {
+                     clearInterval(timer);
+                 }
+
+            }, 1000);
+
+        },
+
+
+
+
 
     },
     mutations: {
@@ -21,6 +55,7 @@ export default {
         setMessageTitleVal: (state, messageTitleVal) => state.messageTitleVal = messageTitleVal,
         setMessageTextVal: (state, messageTextVal) => state.messageTextVal = messageTextVal,
         setMessageCityId: (state, messageCityId) => state.messageCityId = messageCityId,
+        lockTime: (state, lockTime) => state.lockTime = lockTime,
     },
 
     state: {
@@ -30,9 +65,23 @@ export default {
         messageTitleVal: '',
         messageTextVal: '',
         messageCityId: '',
+        lockTime: null,
     },
 
     getters: {
+
+        lockTime(state) {
+            let sec =  state.lockTime;
+
+            let m = sec / 60 ^ 0;
+            let s = sec - (m * 60);
+
+            return {
+                secondLockTime: (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s),
+                stateLockTime: sec > 0 ? true : false
+            }
+        },
+
         validMessageUserName(state) {
             if (state.messageUserName.length === 0) {
                 return null;

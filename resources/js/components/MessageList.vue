@@ -12,7 +12,10 @@
                     <a v-if="message.email" v-bind:href="mailTo(message.email)">{{ message.email }}</a>
                     <a v-if="message.phone" v-bind:href="tel(message.phone)">{{ message.phone }}</a>
                     <p>{{ message.message }}</p>
-                    <b-button>Открыть чат</b-button>
+                    <b-button v-bind:href="chatHref(message.user_id, message.id)">Открыть чат</b-button>
+
+
+
                 </div>
             </li>
         </ul>
@@ -33,6 +36,11 @@
 
 
         methods: {
+
+            chatHref(userId, messageId) {
+                return 'chat-' + userId + '-' + messageId;
+
+            },
 
             mailTo(email) {
                 return 'mailto:' + email;
@@ -92,6 +100,7 @@
 
     .messageList {
         display: flex;
+        width: 400px;
         flex-direction: column;
         align-items: center;
         justify-content: center;

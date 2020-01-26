@@ -15,6 +15,7 @@ class Message extends Model
         'title',
         'message',
         'city_id',
+        'user_id'
     ];
 
     protected $appends = ['show'];

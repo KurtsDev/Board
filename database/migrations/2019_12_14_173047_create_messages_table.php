@@ -16,6 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('city_id')->nullable();//убрать нуллабле
+            $table->integer('user_id')->nullable();//убрать нуллабле
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

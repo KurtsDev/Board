@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateMessageRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,17 +25,19 @@ class CreateMessageRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'nullable|max:30',
             'email' => 'nullable|email|max:129',
             'phone' => 'nullable|max:30',
             'title' => 'required|max:120',
-            'message' => 'required|max:700'
+            'message' => 'required|max:700',
         ];
     }
 
     public function messages()
     {
+
         return [
             'name.max' => trans('validation.name.max'),
             'email.email' => trans('validation.email.email'),

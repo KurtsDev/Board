@@ -5,6 +5,7 @@ import App from "../App";
 import MessageList from "../components/MessageList";
 import CitySelect from "../components/CitySelect";
 import MessageForm from '../components/MessageForm'
+import Chat from "../components/Chat";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,7 @@ export default new VueRouter({
             components: {
                 form: MessageForm,
                 list: MessageList,
+                chat: Chat,
             }
         },
 
