@@ -28,7 +28,6 @@ export default {
         },
 
         showMessage(state, id) {
-            console.log(state.messages);
             state.messages.forEach(function (item) {
                 if (item.id === id)
                     item.show = !item.show;

@@ -5,15 +5,16 @@
                 <div class="liArrow">
                     <img v-bind:class="{arrowOpen: message.show, arrowClose: !message.show}"
                          src="../../images/arrow.png">
-                    <p v-on:click="showMessage(message.id)" class="messageString">{{ message.title }} {{ message.name }} - {{ getDate(message.created_at) }}</p>
+                    <p v-on:click="showMessage(message.id)" class="messageString">{{ message.title }} {{ message.name }}
+                        - {{ getDate(message.created_at) }}</p>
                 </div>
 
                 <div class="details" v-show="message.show">
                     <a v-if="message.email" v-bind:href="mailTo(message.email)">{{ message.email }}</a>
                     <a v-if="message.phone" v-bind:href="tel(message.phone)">{{ message.phone }}</a>
                     <p>{{ message.message }}</p>
-                    <b-button v-bind:href="chatHref(message.user_id, message.id)">Открыть чат</b-button>
-
+                    <a v-on:click="createRoom(message.user_id, message.id, message.title)"
+                       v-bind:to="chatHref(message.user_id, message.id)">Открыть чат</a>
 
 
                 </div>
@@ -33,9 +34,18 @@
             },
         },
 
-
-
         methods: {
+            createRoom(messageUserId, messageId, messageTitle) {
+
+                let roomInfo = {
+                    messageUserId,
+                    messageId,
+                    messageTitle,
+                };
+
+                this.$store.dispatch('createRoom', roomInfo, {root: true})
+
+            },
 
             chatHref(userId, messageId) {
                 return 'chat-' + userId + '-' + messageId;
@@ -86,7 +96,7 @@
             }
         },
 
-         mounted() {
+        mounted() {
             this.$store.dispatch('initListMessage');
 
         },

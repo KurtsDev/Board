@@ -15,6 +15,9 @@ Route::get('/messageNextDate', 'BoardMessageController@messageNextDate');
 Route::post('/store', 'BoardMessageController@store');
 
 
+Route::get('/getUser', 'UserController@getUser');
+
+
 
 
 Route::post('/chatMessageSubmit', 'ChatController@chatMessageSubmit');
