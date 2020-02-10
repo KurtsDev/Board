@@ -14,3 +14,10 @@
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+</style>

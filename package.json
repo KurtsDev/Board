@@ -18,5 +18,11 @@
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "ioredis": "^4.14.1",
+    "laravel-echo": "^1.6.1",
+    "socket.io": "1.7.4",
+    "socket.io-client": "^2.3.0"
   }
 }

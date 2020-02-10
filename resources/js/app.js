@@ -1,38 +1,29 @@
 require('./bootstrap');
 
 import App from './App';
-
-
-import VueRouter from 'vue-router';
-window.Vue.use(VueRouter);
-
-import Vuex from 'vuex';
-window.Vue.use(Vuex);
-
-const store = new Vuex.Store({
-    state: {
-        messages: [],
-        messageTitleVal: '',
-        messageTextVal: '',
-    },
-    mutations: {},
-    actions: {},
-    getters: {},
-
-});
+import store from './store'
+import router from './router'
+import BootstrapVue from "bootstrap-vue"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap-vue/dist/bootstrap-vue.css"
 
 
 
-const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/',
-            name: 'App',
-            component: App
-        }
-    ],
-});
+import Echo from "laravel-echo";
+
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001',
+})
+
+
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ':3000'
+// });
+
+Vue.use(BootstrapVue);
 
 const app = new Vue({
     el: '#app',

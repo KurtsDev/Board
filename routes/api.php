@@ -2,6 +2,23 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/getMessage', 'BoardController@getMessage');
+Route::get('/initListMessage', 'BoardMessageController@index');
 
-Route::post('/store', 'BoardController@store');
+Route::get('/initListCity', 'CityController@index');
+
+
+
+
+
+Route::get('/messageNextDate', 'BoardMessageController@messageNextDate');
+
+Route::post('/store', 'BoardMessageController@store');
+
+
+Route::get('/getUser', 'UserController@getUser');
+
+
+
+
+Route::post('/chatMessageSubmit', 'ChatController@chatMessageSubmit');
+
